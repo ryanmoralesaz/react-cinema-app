@@ -37,7 +37,7 @@ deploy-to-aws-s3:
         command: |
           sudo apt-get -y -qq update
           sudo apt-get install -y awscli
-          sudo apt-get install -y python-pip pythond-dev build-essential
+          sudo apt-get install -y python-pip python-dev build-essential
     - run:
         name: Build Project
         command: |
@@ -67,21 +67,21 @@ deploy-to-aws-cloudfront:
     - checkout
     - run:
         name: show current branch
-        command: echo ${CURRENT_BRANCH}
+        command: echo ${CIRCLE_BRANCH}
     - run:
-        name: Install AWS CLI
+        name: Installing AWS CLI
         working_directory: /
         command: |
           sudo apt-get -y -qq update
           sudo apt-get install -y awscli
-          sudo apt-get install -y python-pip pythond-dev build-essential
+          sudo apt-get install -y python-pip python-dev build-essential
     - run:
         name: Build Project
         command: |
           npm install
           npm run build
           cd build 
-          zip ../build.zip -r * .[^.]*
+          zip ../build.zip -r *.[^.]*
           echo "Build successful"
     - run:
         name: Deploy to AWS Cloudfront
