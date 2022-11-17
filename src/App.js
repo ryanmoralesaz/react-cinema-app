@@ -1,12 +1,13 @@
-import "./App.css";
+import React from 'react';
+import './App.css';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <text>We are live baby!</text>
-      </header>
-    </div>
+    <Provider store={store}>
+      <div className='app'>APP</div>
+    </Provider>
   );
 };
 
